@@ -1,0 +1,46 @@
+<?php
+/**
+ * Magenuts Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://magenuts.com/Magenuts-Commerce-License.txt
+ *
+ * @category   Magenuts
+ * @package    Magenuts_CustomOrderNumber
+ * @author     Magenuts Extension Team
+ * @copyright  Copyright (c) 2019 Magenuts Pvt Ltd. ( https://magenuts.com )
+ * @license    https://magenuts.com/Magenuts-Commerce-License.txt
+ */
+
+?>
+<?php 
+/**
+ * @var $block \Magenuts\CustomOrderNumber\Block\System\Config\ResetCreditmemo
+ */
+?>
+<?php if ($block->isCreditmemoEnable($block->getRequest()->getParam('store', 0))) { ?>
+    <script type="text/x-magento-init">
+    {
+        "*": 
+        {
+            "Magenuts_CustomOrderNumber/js/resetcreditmemo": {}
+        }
+    }
+    </script>
+<?php } ?>
+<?php echo $block->getButtonHtml() ?>
+<span id="creditmemo_span">
+    <img class="processing" hidden="hidden" alt="" style="margin:0 5px"
+         src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="success" hidden="hidden" alt="" style="margin:-3px 5px"
+         src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <img class="error" hidden="hidden" alt="" style="margin:-1px 3px"
+         src="<?php echo $block->getViewFileUrl('images/rule_component_remove.gif') ?>"/>
+    <span id="creditmemo_message"></span>
+    <span id="urlCreditmemo" hidden="hidden"><?php echo $block->getAjaxUrl() ?></span>
+    <span id="storeIdCre" hidden="hidden"><?php echo $block->getRequest()->getParam('store', 0) ?></span>
+</span>

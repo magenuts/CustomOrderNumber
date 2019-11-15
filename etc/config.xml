@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magenuts Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://magenuts.com/Magenuts-Commerce-License.txt
+ *
+ * @category   Magenuts
+ * @package    Magenuts_CustomOrderNumber
+ * @author     Magenuts Extension Team
+ * @copyright  Copyright (c) 2019 Magenuts Pvt Ltd. ( https://magenuts.com )
+ * @license    https://magenuts.com/Magenuts-Commerce-License.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ordernumber>
+            <order>
+                <enable>1</enable>
+                <format>ORD-{mm}{yy}-{counter}-{storeId}</format>
+                <start>1</start>
+                <increment>1</increment>
+                <padding>5</padding>
+                <reset>0</reset>
+            </order>
+            <invoice>
+                <enable>1</enable>
+                <same_order>1</same_order>
+                <replace>ORD</replace>
+                <replace_with>INV</replace_with>
+            </invoice>
+            <shipment>
+                <enable>1</enable>
+                <same_order>1</same_order>
+                <replace>ORD</replace>
+                <replace_with>SHI</replace_with>
+            </shipment>
+            <creditmemo>
+                <enable>1</enable>
+                <same_order>1</same_order>
+                <replace>ORD</replace>
+                <replace_with>CRE</replace_with>
+            </creditmemo>
+        </ordernumber>
+    </default>
+</config>

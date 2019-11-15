@@ -1,0 +1,26 @@
+Custom Order Number,Custom Order Number
+Enable,Enable
+Number Format,Number Format
+Start Counter From,Start Counter From
+Counter Increments,Counter Increments
+Number Counter Padding,Number Counter Padding
+Use Different Counter Numbers for Different Store Views,Use Different Counter Numbers for Different Store Views
+Similar to Order Number,Similar to Order Number
+Part of Oder Number is Replaced by,Part of Oder Number is Replaced by
+Custom Invoice Number,Custom Invoice Number
+Custom Shipment Number,Custom Shipment Number
+Custom Credit Memo Number,Custom Credit Memo Number
+Reset Counter Number,Reset Counter Number
+Reset Counter Number Now,Reset Counter Number Now
+"You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: ORD-{mm}{yy}-{counter}-{storeId} => ORD-0517-00081-1.","You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: ORD-{mm}{yy}-{counter}-{storeId} => ORD-0517-00081-1."
+Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.,Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.
+"You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.","You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part."
+"You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: INV-{mm}{yy}-{counter}-{storeId} => INV-0517-00081-1","You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: INV-{mm}{yy}-{counter}-{storeId} => INV-0517-00081-1"
+Decide to use the order number as the shipment number or not.,Decide to use the order number as the shipment number or not.
+"You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: CRE-{mm}{yy}-{counter}-{storeId} => CRE-0517-00081-1.","You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: CRE-{mm}{yy}-{counter}-{storeId} => CRE-0517-00081-1."
+"You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: SHI-{mm}{yy}-{counter}-{storeId} => SHI-0517-00081-1.","You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers}, {rndLetters}, {rndAlphanumeric}.<br>Example: SHI-{mm}{yy}-{counter}-{storeId} => SHI-0517-00081-1."
+"If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>","If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>"
+"Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.","Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023."
+Choose “Yes” to count independently for each store view.,Choose “Yes” to count independently for each store view.
+"If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.","If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part."
+[Store View],[Store View]

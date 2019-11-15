@@ -1,0 +1,317 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magenuts Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://magenuts.com/Magenuts-Commerce-License.txt
+ *
+ * @category   Magenuts
+ * @package    Magenuts_CustomOrderNumber
+ * @author     Magenuts Extension Team
+ * @copyright  Copyright (c) 2019 Magenuts Pvt Ltd. ( https://magenuts.com )
+ * @license    https://magenuts.com/Magenuts-Commerce-License.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>        
+        <section id="ordernumber" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Custom Order Number</label>
+            <tab>magenuts</tab>
+            <resource>Magenuts_CustomOrderNumber::ordernumber</resource>
+            <group id="order" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Order Number</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment><![CDATA[Version 1.0.0]]></comment> 
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="format" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Format</label>
+                    <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: ORD-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => ORD-0517-00081-1-999.]]></comment>
+                </field>
+                <field id="start" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Counter From</label>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="increment" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Counter Increments</label>
+                    <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="padding" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Counter Padding</label>
+                    <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field> 
+                <field id="individual" translate="label comment" type="select" sortOrder="6" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Use Different Counter Numbers for Different Store Views</label>
+                    <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="reset" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Counter Number</label>
+                    <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
+                    <depends>
+                        <field id="individual">1</field>
+                    </depends> 
+                </field>
+                <field id="reset_now" translate="label comment" type="button" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Counter Number Now</label>
+                    <comment><![CDATA[[Store View]]]></comment>
+                    <frontend_model>Magenuts\CustomOrderNumber\Block\System\Config\ResetOrder</frontend_model>  
+                    <depends>
+                        <field id="individual">1</field>
+                    </depends>             
+                </field>
+            </group>
+            <group id="invoice" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Invoice Number</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="same_order" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Similar to Order Number</label>
+                    <comment><![CDATA[Decide to use the order number as the invoice number or not.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="replace" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Replace Part of Order Number</label>
+                    <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="replace_with" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Part of Oder Number is Replaced by</label>
+                    <comment><![CDATA[Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.]]></comment>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Format</label>
+                    <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: INV-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => INV-0517-00081-1-999.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                </field>
+                <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Counter From</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="increment" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Counter Increments</label>
+                    <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="padding" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Counter Padding</label>
+                    <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="individual" translate="label comment" type="select" sortOrder="9" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Use Different Counter Numbers for Different Store Views</label>
+                    <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                </field>
+                <field id="reset" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Counter Number</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                    <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="reset_now" translate="label comment" type="button" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenuts\CustomOrderNumber\Block\System\Config\ResetInvoice</frontend_model>
+                    <comment><![CDATA[[Store View]]]></comment>
+                    <label>Reset Counter Number Now</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="shipment" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Shipment Number</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="same_order" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Similar to Order Number</label>
+                    <comment><![CDATA[Decide to use the order number as the shipment number or not.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="replace" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
+                    <label>Replace Part of Order Number</label>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="replace_with" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.]]></comment>
+                    <label>Part of Oder Number is Replaced by</label>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Format</label>
+                    <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: SHI-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => SHI-0517-00081-1-999.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                </field>
+                <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Counter From</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="increment" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Counter Increments</label>
+                    <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="padding" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Counter Padding</label>
+                    <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="individual" translate="label comment" type="select" sortOrder="9" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Use Different Counter Numbers for Different Store Views</label>
+                    <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                </field>
+                <field id="reset" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Counter Number</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                    <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="reset_now" translate="label comment" type="button" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenuts\CustomOrderNumber\Block\System\Config\ResetShipment</frontend_model>
+                    <label>Reset Counter Number Now</label>
+                    <comment><![CDATA[[Store View]]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="creditmemo" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Custom Credit Memo Number</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="same_order" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Similar to Order Number</label>
+                    <comment><![CDATA[Decide to use the order number as the creditmemo number or not.]]></comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="replace" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Replace Part of Order Number</label>
+                    <comment><![CDATA[You can not replace variables. If format of order number is ORD-{count}-{mm}{dd}, you only can replace ORD- part.]]></comment>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="replace_with" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Part of Oder Number is Replaced by</label>
+                    <comment><![CDATA[Fill in this bank the content that you want to replace with the content in Replace Part of Order Number.]]></comment>
+                    <depends>
+                        <field id="same_order">1</field>
+                    </depends>
+                </field>
+                <field id="format" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Format</label>
+                    <comment><![CDATA[You can use: {d}, {dd}, {m}, {mm}, {yy}, {yyyy}, {storeId}, {counter}, {rndNumbers**}, {rndLetters**}, {rndAlphanumeric**}.<br>Example: CRE-{mm}{yy}-{counter}-{storeId}-{rndNumbers03} => CRE-0517-00081-1-999.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                </field>
+                <field id="start" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Counter From</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="increment" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Counter Increments</label>
+                    <comment><![CDATA[If the last counter number is 005 and you fill in this field number “4”, the next counter number will be 009.<br><strong>Note: You should reset counter after setting new increments.</strong>]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>
+                <field id="padding" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number Counter Padding</label>
+                    <comment><![CDATA[Total number of digits of the {counter} variable. If you set this field is 4 and the counter is 23, the counter number displayed will be 0023.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <validate>validate-greater-than-zero required-entry</validate>
+                </field>       
+                <field id="individual" translate="label comment" type="select" sortOrder="9" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Use Different Counter Numbers for Different Store Views</label>
+                    <comment><![CDATA[Choose “Yes” to count independently for each store view.]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="reset" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reset Counter Number</label>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                    <source_model>Magenuts\CustomOrderNumber\Model\Config\Source\Frequency</source_model>
+                </field>
+                <field id="reset_now" translate="label comment" type="button" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Magenuts\CustomOrderNumber\Block\System\Config\ResetCreditmemo</frontend_model>
+                    <label>Reset Counter Number Now</label>
+                    <comment><![CDATA[[Store View]]]></comment>
+                    <depends>
+                        <field id="same_order">0</field>
+                        <field id="individual">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

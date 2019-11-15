@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Magenuts Pvt Ltd.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://magenuts.com/Magenuts-Commerce-License.txt
+ *
+ * @category   Magenuts
+ * @package    Magenuts_CustomOrderNumber
+ * @author     Magenuts Extension Team
+ * @copyright  Copyright (c) 2019 Magenuts Pvt Ltd. ( https://magenuts.com )
+ * @license    https://magenuts.com/Magenuts-Commerce-License.txt
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_order_place_before">
+        <observer name="bss_custom_order" instance="Magenuts\CustomOrderNumber\Observer\OrderObserver" />
+    </event>
+    <event name="sales_order_invoice_save_before">
+        <observer name="bss_custom_invoice" instance="Magenuts\CustomOrderNumber\Observer\InvoiceObserver" />
+    </event>
+    <event name="sales_order_shipment_save_before">
+        <observer name="bss_custom_shipment" instance="Magenuts\CustomOrderNumber\Observer\ShipmentObserver" />
+    </event>
+    <event name="sales_order_creditmemo_save_before">		
+        <observer name="bss_custom_creditmemo" instance="Magenuts\CustomOrderNumber\Observer\CreditmemoObserver" />
+    </event>
+</config>
