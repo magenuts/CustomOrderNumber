@@ -7,13 +7,13 @@
  * This source file is subject to the EULA
  * that is bundled with this package in the file LICENSE.txt.
  * It is also available through the world-wide-web at this URL:
- * https://magenuts.com/Magenuts-Commerce-License.txt
+ * https://magenuts.com/Magenuts-IT-Solutions-License.txt
  *
  * @category   Magenuts
  * @package    Magenuts_CustomOrderNumber
- * @author     Magenuts Extension Team
- * @copyright  Copyright (c) 2019 Magenuts Pvt Ltd. ( https://magenuts.com )
- * @license    https://magenuts.com/Magenuts-Commerce-License.txt
+ * @author     Magenuts Ijaz Ali & Magenuts Extension Team
+ * @copyright  Copyright (c) 2018-2020 Magenuts IT Solutions Pvt Ltd. ( https://magenuts.com )
+ * @license    https://magenuts.com/Magenuts-IT-Solutions-License.txt
  */
 
 namespace Magenuts\CustomOrderNumber\Cron;

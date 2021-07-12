@@ -2,6 +2,9 @@
     "name": "magenuts/module-custom-order-number",
     "description": "Magento 2 Custom Order Number Module by Magenuts",
     "type": "magento2-module",
+	"require": {
+        "magenuts/core-module": "*"
+    },
     "version": "1.0.0",
     "license": [
         "OSL-3.0",
